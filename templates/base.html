@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>TerrenceBook</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'social_media_site/ccs/master.css'%}">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mynav">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <a class="navbar-brand mynav" href="{% url 'home' %}">TerrenceBook</a>
+        <ul class="navbar-nav mr-auto navbar-right">
+          {% if user.is_authenticated %}
+            <li><a href="#">Post</a></li>
+            <li><a href="#">Groups</a></li>
+            <li><a href="#">Create Group</a></li>
+            <li><a href="{% url 'accounts:logout' %}">Log Out</a></li>
+          {% else %}
+            <li><a href="#">Groups</a></li>
+            <li><a href="{% url 'accounts:login' %}">Log In</a></li>
+            <li><a href="{% url 'accounts:signup'%}">Sign Up</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <div class="container mycontent">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>
